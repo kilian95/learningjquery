@@ -1,3 +1,9 @@
 1. Drop down menu: .removeclass .hide
 
 2. animate page scroll : 
+
+3. Modal
+
+4. form validation
+
+5. tabs

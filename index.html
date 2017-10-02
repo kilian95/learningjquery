@@ -9,6 +9,9 @@
 
   $(document).ready(function(){
 
+    //add html using jquery
+    $("h2#about").text("About");
+
     //tabs for murals section---------------------------------------
     $('ul.tabs li').click(function(){
       var tab_id = $(this).attr('data-tab');
@@ -43,7 +46,35 @@
         window.location.hash = hash;
       });
     });
+
+    // form validation --------------------------------------------------------
+    
+    $("#submit").click(function(){
+
+      //check the fields are not empty
+      var value = $("#FirstName").val();
+      if (value == ""){
+        alert("first name can not be left blank");
+      }
+
+      //check emails match
+      var email = $("#email").val();
+      var confirmEmail = $("#confirmEmail").val();
+      if (email != confirmEmail){
+        alert("emails do not match");
+      }
+
+      //check if email contains @ symbol
+    //indexOf returns the numeric index  of '@'. Else it returns -1. So check if the value it has returned is greater than -1.
+      if ($('#email').val().indexOf('@') > -1) {
+      }else{
+        alert("Email must contain '@' symbol");
+      }  
+    });
+
+
   });//.ready(function()
+
 
 </script>
 </head>
@@ -68,11 +99,11 @@
           <li><a href="#">Other</a></li>
         </ul>
       </li>
-      <li><a href="#">Contact</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
   <div class="content" id="about">
-    <h2> About</h2>
+    <h2 id="about"></h2>
     <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
   </div>
 
@@ -114,6 +145,62 @@
     </div>
   </section>
 
+  <section>
+    <div class="content" id="contact">
+      <h2> Contact </h2>
+      <p> Sign up to our newsletter?</p>
+    </div>
+
+
+    
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Sign Up</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    
+    First name: <input type="text" name="FirstName" id="FirstName"><br>
+    Last name: <input type="text" name="LastName"><br>
+    Email: <input type="text" name="Email" id="email"><br>
+    Confirm Email: <input type="text" name="Email" id="confirmEmail"><br>
+    <input type="submit" value="Submit" id="submit">
+
+  </div>
+
+</div>
+    
+  </section>
+
+<script type="text/javascript">
+ 
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+//show modal when button is clicked
+$('#myBtn').click(function(){
+  $("#myModal").css("display", "block");
+})
+
+//When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  $("#myModal").css("display", "none");
+}
+
+// When the user clicks anywhere outside of the modal, close it
+$(window).click(function(event){
+  if (event.target == modal) {
+     $("#myModal").css("display", "none");
+  }
+})
+
+</script>
   
 </body>
 
