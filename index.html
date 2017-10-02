@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" type="text/css" href="index.css">
+  <title>Street Art Belfast</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+
+  $(document).ready(function(){
+
+    //tabs for murals section---------------------------------------
+    $('ul.tabs li').click(function(){
+      var tab_id = $(this).attr('data-tab');
+
+      $('ul.tabs li').removeClass('current');
+      $('.tab-content').removeClass('current');
+
+      $(this).addClass('current');
+      $("#"+tab_id).addClass('current');
+    })
+
+    // drop down menu -------------------------------------------------
+    $('nav li ul').hide().removeClass('dropdownItem'); //hide drop down menu
+    $('nav li').hover(function () {
+      $('ul', this).stop().slideToggle(300); 
+    });
+
+    //smooth scrolling -------------------------------------------------
+    // Add smooth scrolling to all links
+    $("a").on('click', function(event) {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+      
+      // Store hash
+      var hash = this.hash;
+
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 800, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    });
+  });//.ready(function()
+
+</script>
+</head>
+<body>
+	<nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li>
+        <a href="#streetart">Street Art</a>
+        <ul class="dropdownItem">
+          <li><a href="#map">Map</a></li>
+          <li><a href="#top10">Top 10</a></li>
+          <li><a href="#artists">Artists</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#murals">Murals</a>
+        <ul class="dropdownItem">
+          <li><a href="#">Nationalist</a></li>
+          <li><a href="#">Unionist</a></li>
+          <li><a href="#">Other</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="content" id="about">
+    <h2> About</h2>
+    <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
+  </div>
+
+  <section>
+    <div class="content" id="streetart">
+      <h2> Street Art</h2>
+      <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
+    </div>
+
+    <h3 id="map"> Map of street art in Belfast</h3>
+    <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
+
+    <h3 id="top10"> Top 10 pieces of street art in Belfast</h3>
+    <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
+
+    <h3 id="artists"> Artists in belfast </h3>
+    <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
+
+  </section>  
+
+  <section>
+    <div class="content" id="murals">
+      <h2> Murals</h2>
+      <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-1">Nationalist</li>
+        <li class="tab-link" data-tab="tab-2">Loyalist</li>
+        <li class="tab-link" data-tab="tab-3">Other</li>
+      </ul>
+
+      <div id="tab-1" class="tab-content current">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      </div>
+      <div id="tab-2" class="tab-content">
+         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
+      <div id="tab-3" class="tab-content">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      </div>
+    </div>
+  </section>
+
+  
+</body>
+
+
+</html>	
