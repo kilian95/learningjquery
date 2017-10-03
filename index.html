@@ -48,31 +48,44 @@
     });
 
     // form validation --------------------------------------------------------
-    
+
     $("#submit").click(function(){
 
-      //check the fields are not empty
-      var value = $("#FirstName").val();
-      if (value == ""){
-        alert("first name can not be left blank");
-      }
+      //error messages
+      var errorBlank = "This can not be left blank";
+      var errorEmailMatch = "Email does not match";
+      var errorEmail = "Email must contain '@'";
+      
+      //check each input is not blank
+      $("input").each(function() {
+        var element = $(this);
+        if (element.val() == "") {
+          $( ".modal-content" ).prepend( "<p class='error' id='errorBlank'>All fields must be filled in</p>" );
+          return false; //break out of loop  
+        }else {
+          $( "input" ).prev().empty(); //removes error message
+          $("p#errorBlank").empty();
+        }
+      });
 
       //check emails match
       var email = $("#email").val();
       var confirmEmail = $("#confirmEmail").val();
       if (email != confirmEmail){
-        alert("emails do not match");
+        $( "#confirmEmail" ).prev().append(errorEmailMatch);
+      } 
+      else{
+        $( "#confirmEmail" ).prev().empty();
       }
 
       //check if email contains @ symbol
-    //indexOf returns the numeric index  of '@'. Else it returns -1. So check if the value it has returned is greater than -1.
+      //indexOf returns the numeric index  of '@'. 
+      //Else it returns -1. So check if the value it has returned is greater than -1.
       if ($('#email').val().indexOf('@') > -1) {
       }else{
-        alert("Email must contain '@' symbol");
+        $( "#email" ).prev().append(errorEmail);
       }  
     });
-
-
   });//.ready(function()
 
 
@@ -162,10 +175,13 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    
+    <p class="error"></p>
     First name: <input type="text" name="FirstName" id="FirstName"><br>
-    Last name: <input type="text" name="LastName"><br>
+    <p class="error"></p>
+    Last name: <input type="text" name="LastName" id="lastname"><br>
+    <p class="error"></p>
     Email: <input type="text" name="Email" id="email"><br>
+    <p class="error"></p>
     Confirm Email: <input type="text" name="Email" id="confirmEmail"><br>
     <input type="submit" value="Submit" id="submit">
 

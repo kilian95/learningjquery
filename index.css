@@ -127,3 +127,12 @@ ul.tabs li.current{
     text-decoration: none;
     cursor: pointer;
 }
+
+#emailMatch{
+    display: none;
+    color: red;
+}
+
+.error{
+    color: red;
+}
