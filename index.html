@@ -51,7 +51,13 @@
 
     $("#submit").click(function(){
 
+      var isFilled;
+      var emailsMatch;
+      var emailValid;
+      var yearValid;
+
       //error messages
+      var erroryear = "Year must be a number";
       var errorBlank = "This can not be left blank";
       var errorEmailMatch = "Email does not match";
       var errorEmail = "Email must contain '@'";
@@ -61,10 +67,13 @@
         var element = $(this);
         if (element.val() == "") {
           $( ".modal-content" ).prepend( "<p class='error' id='errorBlank'>All fields must be filled in</p>" );
+          isFilled = false;
+          
           return false; //break out of loop  
         }else {
           $( "input" ).prev().empty(); //removes error message
           $("p#errorBlank").empty();
+          isFilled = true;
         }
       });
 
@@ -73,18 +82,38 @@
       var confirmEmail = $("#confirmEmail").val();
       if (email != confirmEmail){
         $( "#confirmEmail" ).prev().append(errorEmailMatch);
+        emailsMatch = false;
       } 
       else{
         $( "#confirmEmail" ).prev().empty();
+        emailsMatch = true;
       }
 
       //check if email contains @ symbol
       //indexOf returns the numeric index  of '@'. 
       //Else it returns -1. So check if the value it has returned is greater than -1.
       if ($('#email').val().indexOf('@') > -1) {
+        emailValid = true;
       }else{
         $( "#email" ).prev().append(errorEmail);
-      }  
+        emailValid = false;
+      } 
+
+
+      //check year of birth is numeric
+      if ($.isNumeric($('#dob').val())) {
+        yearValid = true;
+      }else{
+        $( "#dob" ).prev().append(erroryear);
+        yearValid = false;
+      } 
+
+
+      if (emailValid == true && emailsMatch == true && isFilled == true && yearValid ==true){
+        $(".form").css("display", "none");
+        $( ".modal-content" ).append("<h2> You have succesfully signed up for the newsletter!</h2>");
+      }
+
     });
   });//.ready(function()
 
@@ -175,16 +204,19 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p class="error"></p>
-    First name: <input type="text" name="FirstName" id="FirstName"><br>
-    <p class="error"></p>
-    Last name: <input type="text" name="LastName" id="lastname"><br>
-    <p class="error"></p>
-    Email: <input type="text" name="Email" id="email"><br>
-    <p class="error"></p>
-    Confirm Email: <input type="text" name="Email" id="confirmEmail"><br>
-    <input type="submit" value="Submit" id="submit">
-
+    <div class="form">
+      <p class="error"></p>
+      First name: <input type="text" name="FirstName" id="FirstName"><br>
+      <p class="error"></p>
+      Last name: <input type="text" name="LastName" id="lastname"><br>
+      <p class="error"></p>
+      Email: <input type="text" name="Email" id="email"><br>
+      <p class="error"></p>
+      Confirm Email: <input type="text" name="Email" id="confirmEmail"><br>
+      <p class="error"></p>
+      Year of Birth: <input type="text" name="dob" id="dob"><br>
+      <input type="submit" value="Submit" id="submit">
+    </div>  
   </div>
 
 </div>
