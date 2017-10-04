@@ -1,28 +1,44 @@
 /* menu bar -----------------------*/
+html{
+    font-family: Tahoma, Geneva, sans-serif;
+}
+
+body{
+    margin: 0;
+}
 
 nav {
-    background: #f9f9f9;
+    background: #292e32;
     float: left;
     width: 100%;
+    position: fixed;
+    margin-top: -8px;
 }
 
 nav ul {
     text-align: center;
 }
 
-nav ul li {
+nav ul li#brand {
     float: left;
+    font-size: 20px;
+}
+
+nav ul li {
+    float: right;
     display: inline;
+    font-weight: bold;
 }
 
 nav ul li:hover {
-    background: #eae8e8;
+    background: #7c8a87;
 }
 
 nav ul li a {
     padding: 20px 30px;
     display: block;
-    color: #000000;
+    color: white;
+    text-decoration:none;
 }
 
 nav ul li ul {
@@ -53,9 +69,10 @@ nav ul li:hover ul.dropdownItem {
     display: block;
 }
 
-div.content {
-    width: 50%;
+.container {
+    width: 100%;
     padding-top: 50px;
+    text-align: center;
 }
 
 /* tabs -----------------------*/
@@ -135,4 +152,38 @@ ul.tabs li.current{
 
 .error{
     color: red;
+}
+
+/*jquery slideshow -----------------------------------*/
+
+#slider {
+    width: 720px;
+    height: 400px;
+    overflow: hidden;
+}
+
+#slider .slides {
+    display: block;
+    width: 6000px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+
+#slider .slide {
+    float: left;
+    list-style-type: none;
+    width: 720px;
+    height: 400px;
+}
+
+
+#banner{
+    width: 100%;
+}
+
+/*Map-------------------------------------*/
+
+#infoWindow{
+    width: 200px;
 }

@@ -1,3 +1,5 @@
+<!-- google maps api key AIzaSyAkKq89X2haWeOcvm7BwKXz83BbXoOewxs
+ -->
 <!DOCTYPE html>
 <html>
 
@@ -115,6 +117,41 @@
       }
 
     });
+
+// slideshow --------------------------------------------------------
+    //settings for slider
+    var width = 720;
+    var animationSpeed = 1000;
+    var pause = 3000;
+    var currentSlide = 1;
+
+    //cache DOM elements
+    var $slider = $('#slider');
+    var $slideContainer = $('.slides', $slider);
+    var $slides = $('.slide', $slider);
+
+    var interval;
+
+    function startSlider() {
+        interval = setInterval(function() {
+            $slideContainer.animate({'margin-left': '-='+width}, animationSpeed, function() {
+                if (++currentSlide === $slides.length) {
+                    currentSlide = 1;
+                    $slideContainer.css('margin-left', 0);
+                }
+            });
+        }, pause);
+    }
+    function pauseSlider() {
+        clearInterval(interval);
+    }
+
+    $slideContainer
+        .on('mouseenter', pauseSlider)
+        .on('mouseleave', startSlider);
+
+    startSlider();
+
   });//.ready(function()
 
 
@@ -123,8 +160,8 @@
 <body>
 	<nav>
     <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#about">About</a></li>
+      <li id="brand"><a href="#">Belfast Street Art</a></li>
+      <li><a href="#contact">Contact</a></li>
       <li>
         <a href="#streetart">Street Art</a>
         <ul class="dropdownItem">
@@ -141,33 +178,100 @@
           <li><a href="#">Other</a></li>
         </ul>
       </li>
-      <li><a href="#contact">Contact</a></li>
+      
+      <li><a href="#about">About</a></li>
     </ul>
   </nav>
-  <div class="content" id="about">
-    <h2 id="about"></h2>
-    <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
-  </div>
 
   <section>
-    <div class="content" id="streetart">
-      <h2> Street Art</h2>
+    <img id="banner" src="cranes.jpg" alt="art1">
+
+    <div class="container" id="about">
+      <h2 id="about"></h2>
       <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
+      
     </div>
-
-    <h3 id="map"> Map of street art in Belfast</h3>
-    <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
-
-    <h3 id="top10"> Top 10 pieces of street art in Belfast</h3>
-    <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
-
-    <h3 id="artists"> Artists in belfast </h3>
-    <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
-
+    
   </section>  
 
   <section>
-    <div class="content" id="murals">
+    <div class="container" id="streetart">
+      <h2> Street Art</h2>
+      <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
+    
+
+      <h3 id="map"> Street Art Map</h3>
+      <div id="googleMap" style="width:100%;height:400px;"></div>
+
+      <script>
+
+        var cordinates = [
+                            [54.602119,-5.931664],
+                            [54.702119,-5.961664],
+                            [54.802119,-5.951664], 
+                            [54.302119,-5.941664],
+                            [54.202119,-5.921664], 
+                          ];
+        var i;                      
+        function initMap() {
+          var mapProp= new google.maps.Map(document.getElementById('googleMap'),{  
+              center:new google.maps.LatLng(54.5961, -5.92858),
+              zoom:13,
+          });
+
+          // var windowContent = "<img id='infoWindow' src='art1.jpg'>";
+          // var infowindow = new google.maps.InfoWindow({
+          //   content: windowContent
+          // });
+
+          // var myLatLng = {lat: 54.602119, lng: -5.931664};
+          // var marker = new google.maps.Marker({
+          //   position: myLatLng,
+          //   map: mapProp,
+          //   title: 'Hello World!'
+          // });
+
+          // marker.addListener('click', function() {
+          //   infowindow.open(map, marker);
+          // });
+
+          
+          for (i = 0; i < cordinates.length; i++){
+            //alert("lat: " + cordinates[i][0] + " long: " + cordinates[i][1])
+            var latlng = new google.maps.LatLng(cordinates[i][0], cordinates[i][1]);
+            var marker = new google.maps.Marker({  
+              map: mapProp, 
+              position: latlng  
+            });
+            
+          }  
+        }
+
+for (i = 0; i < gon.murals.length; i++){
+          addMarker(map);
+        }
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKq89X2haWeOcvm7BwKXz83BbXoOewxs&callback=initMap"></script>
+
+      <!-- slide show ////////////////////////////////////////////////////////////////-->
+
+      <h3 id="top10"> Top 10 pieces of street art in Belfast</h3>
+      <div id="slider">
+        <ul class="slides">
+          <li class="slide slide1"><img src="art1.jpg" alt="art1"></li>
+          <li class="slide slide2"><img src="art2.jpg" alt="art1"></li>
+          <li class="slide slide3"><img src="art3.jpg" alt="art1"></li>
+          <li class="slide slide4"><img src="art4.jpg" alt="art1"></li>
+          <li class="slide slide5"><img src="art5.jpg" alt="art1"></li>
+          <li class="slide slide1"><img src="art1.jpg" alt="art1"></li>
+        </ul>
+      </div>
+    </div> 
+  </section>  
+
+  <section>
+    <div class="container" id="murals">
       <h2> Murals</h2>
       <ul class="tabs">
         <li class="tab-link current" data-tab="tab-1">Nationalist</li>
@@ -188,7 +292,7 @@
   </section>
 
   <section>
-    <div class="content" id="contact">
+    <div class="container" id="contact">
       <h2> Contact </h2>
       <p> Sign up to our newsletter?</p>
     </div>
