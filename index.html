@@ -204,52 +204,39 @@
       <div id="googleMap" style="width:100%;height:400px;"></div>
 
       <script>
-
-        var cordinates = [
-                            [54.602119,-5.931664],
-                            [54.702119,-5.961664],
-                            [54.802119,-5.951664], 
-                            [54.302119,-5.941664],
-                            [54.202119,-5.921664], 
-                          ];
-        var i;                      
+                   
         function initMap() {
           var mapProp= new google.maps.Map(document.getElementById('googleMap'),{  
               center:new google.maps.LatLng(54.5961, -5.92858),
               zoom:13,
           });
 
-          // var windowContent = "<img id='infoWindow' src='art1.jpg'>";
-          // var infowindow = new google.maps.InfoWindow({
-          //   content: windowContent
-          // });
-
-          // var myLatLng = {lat: 54.602119, lng: -5.931664};
-          // var marker = new google.maps.Marker({
-          //   position: myLatLng,
-          //   map: mapProp,
-          //   title: 'Hello World!'
-          // });
-
-          // marker.addListener('click', function() {
-          //   infowindow.open(map, marker);
-          // });
-
-          
+          var cordinates = [
+                            [54.602119,-5.931664, 'art1.jpg'],
+                            [54.601166,-5.924788, 'art2.jpg'],
+                            [54.593826,-5.918291, 'art3.jpg'], 
+                            [54.599540,-5.946156, 'art4.jpg'],
+                            [54.602960,-5.899297, 'art5.jpg']
+                          ];
+          //place markers                
           for (i = 0; i < cordinates.length; i++){
-            //alert("lat: " + cordinates[i][0] + " long: " + cordinates[i][1])
             var latlng = new google.maps.LatLng(cordinates[i][0], cordinates[i][1]);
             var marker = new google.maps.Marker({  
               map: mapProp, 
               position: latlng  
-            });
-            
-          }  
+            }); 
+
+            //give each marker infowindow
+            var infoWindow = new google.maps.InfoWindow();
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                infoWindow.setContent("<img id='infoWindow' src=" + cordinates[i][2] + ">");
+                infoWindow.open(mapProp, marker);
+              }
+            })(marker, i));
+          } 
         }
 
-for (i = 0; i < gon.murals.length; i++){
-          addMarker(map);
-        }
       </script>
 
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKq89X2haWeOcvm7BwKXz83BbXoOewxs&callback=initMap"></script>
