@@ -1,5 +1,3 @@
-<!-- google maps api key AIzaSyAkKq89X2haWeOcvm7BwKXz83BbXoOewxs
- -->
 <!DOCTYPE html>
 <html>
 
@@ -7,155 +5,8 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
   <title>Street Art Belfast</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-
-  $(document).ready(function(){
-
-    //add html using jquery
-    $("h2#about").text("About");
-
-    //tabs for murals section---------------------------------------
-    $('ul.tabs li').click(function(){
-      var tab_id = $(this).attr('data-tab');
-
-      $('ul.tabs li').removeClass('current');
-      $('.tab-content').removeClass('current');
-
-      $(this).addClass('current');
-      $("#"+tab_id).addClass('current');
-    })
-
-    // drop down menu -------------------------------------------------
-    $('nav li ul').hide().removeClass('dropdownItem'); //hide drop down menu
-    $('nav li').hover(function () {
-      $('ul', this).stop().slideToggle(300); 
-    });
-
-    //smooth scrolling -------------------------------------------------
-    // Add smooth scrolling to all links
-    $("a").on('click', function(event) {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-      
-      // Store hash
-      var hash = this.hash;
-
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    });
-
-    // form validation --------------------------------------------------------
-
-    $("#submit").click(function(){
-
-      var isFilled;
-      var emailsMatch;
-      var emailValid;
-      var yearValid;
-
-      //error messages
-      var erroryear = "Year must be a number";
-      var errorBlank = "This can not be left blank";
-      var errorEmailMatch = "Email does not match";
-      var errorEmail = "Email must contain '@'";
-      
-      //check each input is not blank
-      $("input").each(function() {
-        var element = $(this);
-        if (element.val() == "") {
-          $( ".modal-content" ).prepend( "<p class='error' id='errorBlank'>All fields must be filled in</p>" );
-          isFilled = false;
-          
-          return false; //break out of loop  
-        }else {
-          $( "input" ).prev().empty(); //removes error message
-          $("p#errorBlank").empty();
-          isFilled = true;
-        }
-      });
-
-      //check emails match
-      var email = $("#email").val();
-      var confirmEmail = $("#confirmEmail").val();
-      if (email != confirmEmail){
-        $( "#confirmEmail" ).prev().append(errorEmailMatch);
-        emailsMatch = false;
-      } 
-      else{
-        $( "#confirmEmail" ).prev().empty();
-        emailsMatch = true;
-      }
-
-      //check if email contains @ symbol
-      //indexOf returns the numeric index  of '@'. 
-      //Else it returns -1. So check if the value it has returned is greater than -1.
-      if ($('#email').val().indexOf('@') > -1) {
-        emailValid = true;
-      }else{
-        $( "#email" ).prev().append(errorEmail);
-        emailValid = false;
-      } 
-
-
-      //check year of birth is numeric
-      if ($.isNumeric($('#dob').val())) {
-        yearValid = true;
-      }else{
-        $( "#dob" ).prev().append(erroryear);
-        yearValid = false;
-      } 
-
-
-      if (emailValid == true && emailsMatch == true && isFilled == true && yearValid ==true){
-        $(".form").css("display", "none");
-        $( ".modal-content" ).append("<h2> You have succesfully signed up for the newsletter!</h2>");
-      }
-
-    });
-
-// slideshow --------------------------------------------------------
-    //settings for slider
-    var width = 720;
-    var animationSpeed = 1000;
-    var pause = 3000;
-    var currentSlide = 1;
-
-    //cache DOM elements
-    var $slider = $('#slider');
-    var $slideContainer = $('.slides', $slider);
-    var $slides = $('.slide', $slider);
-
-    var interval;
-
-    function startSlider() {
-        interval = setInterval(function() {
-            $slideContainer.animate({'margin-left': '-='+width}, animationSpeed, function() {
-                if (++currentSlide === $slides.length) {
-                    currentSlide = 1;
-                    $slideContainer.css('margin-left', 0);
-                }
-            });
-        }, pause);
-    }
-    function pauseSlider() {
-        clearInterval(interval);
-    }
-
-    $slideContainer
-        .on('mouseenter', pauseSlider)
-        .on('mouseleave', startSlider);
-
-    startSlider();
-
-  });//.ready(function()
-
-
-</script>
+  <script src="index.js" type="text/javascript"></script> 
+  
 </head>
 <body>
 	<nav>
@@ -184,7 +35,7 @@
   </nav>
 
   <section>
-    <img id="banner" src="cranes.jpg" alt="art1">
+    <img id="banner" src="images/cranes.jpg" alt="art1">
 
     <div class="container" id="about">
       <h2 id="about"></h2>
@@ -203,41 +54,7 @@
       <h3 id="map"> Street Art Map</h3>
       <div id="googleMap" style="width:100%;height:400px;"></div>
 
-      <script>
-                   
-        function initMap() {
-          var mapProp= new google.maps.Map(document.getElementById('googleMap'),{  
-              center:new google.maps.LatLng(54.5961, -5.92858),
-              zoom:13,
-          });
-
-          var cordinates = [
-                            [54.602119,-5.931664, 'art1.jpg'],
-                            [54.601166,-5.924788, 'art2.jpg'],
-                            [54.593826,-5.918291, 'art3.jpg'], 
-                            [54.599540,-5.946156, 'art4.jpg'],
-                            [54.602960,-5.899297, 'art5.jpg']
-                          ];
-          //place markers                
-          for (i = 0; i < cordinates.length; i++){
-            var latlng = new google.maps.LatLng(cordinates[i][0], cordinates[i][1]);
-            var marker = new google.maps.Marker({  
-              map: mapProp, 
-              position: latlng  
-            }); 
-
-            //give each marker infowindow
-            var infoWindow = new google.maps.InfoWindow();
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                infoWindow.setContent("<img id='infoWindow' src=" + cordinates[i][2] + ">");
-                infoWindow.open(mapProp, marker);
-              }
-            })(marker, i));
-          } 
-        }
-
-      </script>
+      
 
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKq89X2haWeOcvm7BwKXz83BbXoOewxs&callback=initMap"></script>
 
@@ -246,12 +63,12 @@
       <h3 id="top10"> Top 10 pieces of street art in Belfast</h3>
       <div id="slider">
         <ul class="slides">
-          <li class="slide slide1"><img src="art1.jpg" alt="art1"></li>
-          <li class="slide slide2"><img src="art2.jpg" alt="art1"></li>
-          <li class="slide slide3"><img src="art3.jpg" alt="art1"></li>
-          <li class="slide slide4"><img src="art4.jpg" alt="art1"></li>
-          <li class="slide slide5"><img src="art5.jpg" alt="art1"></li>
-          <li class="slide slide1"><img src="art1.jpg" alt="art1"></li>
+          <li class="slide slide1"><img src="images/art1.jpg" alt="art1"></li>
+          <li class="slide slide2"><img src="images/art2.jpg" alt="art1"></li>
+          <li class="slide slide3"><img src="images/art3.jpg" alt="art1"></li>
+          <li class="slide slide4"><img src="images/art4.jpg" alt="art1"></li>
+          <li class="slide slide5"><img src="images/art5.jpg" alt="art1"></li>
+          <li class="slide slide1"><img src="images/art1.jpg" alt="art1"></li>
         </ul>
       </div>
     </div> 
@@ -283,64 +100,32 @@
       <h2> Contact </h2>
       <p> Sign up to our newsletter?</p>
     </div>
-
-
     
-<!-- Trigger/Open The Modal -->
-<button id="myBtn">Sign Up</button>
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Sign Up</button>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="form">
-      <p class="error"></p>
-      First name: <input type="text" name="FirstName" id="FirstName"><br>
-      <p class="error"></p>
-      Last name: <input type="text" name="LastName" id="lastname"><br>
-      <p class="error"></p>
-      Email: <input type="text" name="Email" id="email"><br>
-      <p class="error"></p>
-      Confirm Email: <input type="text" name="Email" id="confirmEmail"><br>
-      <p class="error"></p>
-      Year of Birth: <input type="text" name="dob" id="dob"><br>
-      <input type="submit" value="Submit" id="submit">
-    </div>  
-  </div>
-
-</div>
-    
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="form">
+          <p class="error"></p>
+          First name: <input type="text" name="FirstName" id="FirstName"><br>
+          <p class="error"></p>
+          Last name: <input type="text" name="LastName" id="lastname"><br>
+          <p class="error"></p>
+          Email: <input type="text" name="Email" id="email"><br>
+          <p class="error"></p>
+          Confirm Email: <input type="text" name="Email" id="confirmEmail"><br>
+          <p class="error"></p>
+          Year of Birth: <input type="text" name="dob" id="dob"><br>
+          <input type="submit" value="Submit" id="submit">
+        </div>  
+      </div>
+    </div>
   </section>
-
-<script type="text/javascript">
- 
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-//show modal when button is clicked
-$('#myBtn').click(function(){
-  $("#myModal").css("display", "block");
-})
-
-//When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  $("#myModal").css("display", "none");
-}
-
-// When the user clicks anywhere outside of the modal, close it
-$(window).click(function(event){
-  if (event.target == modal) {
-     $("#myModal").css("display", "none");
-  }
-})
-
-</script>
-  
 </body>
 
 
