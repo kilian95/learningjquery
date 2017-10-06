@@ -1,6 +1,7 @@
 /* menu bar -----------------------*/
 html{
     font-family: Tahoma, Geneva, sans-serif;
+    margin-bottom: 10px;
 }
 
 body{
@@ -69,10 +70,20 @@ nav ul li:hover ul.dropdownItem {
     display: block;
 }
 
+#bar{
+    margin-top: 60px;
+    background-color: white;
+    height: 5px;
+    width: 50px;
+    position: absolute;
+    margin-left: 850px;
+}
+
 .container {
-    width: 100%;
+    width: 80%;
     padding-top: 50px;
     text-align: center;
+    margin: auto;
 }
 
 /* tabs -----------------------*/
@@ -99,6 +110,7 @@ ul.tabs li.current{
     display: none;
     background: #f9f9f9;
     padding: 15px;
+
 }
 
 .tab-content.current{

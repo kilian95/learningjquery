@@ -14,11 +14,43 @@ $(document).ready(function(){
     $("#"+tab_id).addClass('current');
   })
 
-  // --------------drop down menu -------------------------------------------------
+  // --------------Navigation -------------------------------------------------
+  //drop down menu
   $('nav li ul').hide().removeClass('dropdownItem'); //hide drop down menu
   $('nav li').hover(function () {
     $('ul', this).stop().slideToggle(300); 
   });
+
+  //progressBar
+  $("li#brand").click(function() {
+    $("#bar").css("width", "20%");
+  });
+
+  $("li#about").click(function() {
+    $("#bar").css("width", "73%");
+    
+  });
+
+  //animation bounce effect
+  $("#aboutNav").click(function(){
+    $("#bar").animate({left: '100px', width: '+=10px',});
+    $("#bar").animate({left: '-=20px'});
+    $("#bar").animate({left: '+=20px'});
+    $("#bar").animate({left: '-=10px'});
+    $("#bar").animate({left: '+=10px'});
+
+  });
+
+  $("#homeNav").click(function(){
+    $("#bar").animate({
+      left: '100px', 
+      width: '+=10px',
+    });
+
+
+  });
+
+   
 
   //--------------smooth scrolling -------------------------------------------------
   $("a").on('click', function(event) {
@@ -165,6 +197,9 @@ $(document).ready(function(){
 
   startSlider();
 
+
+  
+
 });//.ready(function()
 
 //--------------Google Maps ----------------------------------------------------
@@ -200,5 +235,3 @@ function initMap() {
     })(marker, i));
   } 
 }
-
-

@@ -6,21 +6,13 @@
   <title>Street Art Belfast</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="index.js" type="text/javascript"></script> 
-  
 </head>
+
 <body>
 	<nav>
     <ul>
-      <li id="brand"><a href="#">Belfast Street Art</a></li>
+      <li id="brand"><a href="#home">Belfast Street Art</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li>
-        <a href="#streetart">Street Art</a>
-        <ul class="dropdownItem">
-          <li><a href="#map">Map</a></li>
-          <li><a href="#top10">Top 10</a></li>
-          <li><a href="#artists">Artists</a></li>
-        </ul>
-      </li>
       <li>
         <a href="#murals">Murals</a>
         <ul class="dropdownItem">
@@ -29,20 +21,28 @@
           <li><a href="#">Other</a></li>
         </ul>
       </li>
-      
-      <li><a href="#about">About</a></li>
+      <li>
+        <a href="#streetart">Street Art</a>
+        <ul class="dropdownItem">
+          <li><a href="#map">Map</a></li>
+          <li><a href="#top10">Top 10</a></li>
+          <li><a href="#artists">Artists</a></li>
+        </ul>
+      </li>
+      <li id="aboutNav"><a href="#about">About</a></li>
+      <li id="homeNav"><a href="#home">Home</a></li>
     </ul>
+    <div id="bar"></div>  
   </nav>
 
   <section>
-    <img id="banner" src="images/cranes.jpg" alt="art1">
-
+    <div id="home">
+      <img id="banner" src="images/cranes.jpg" alt="art1">
+    </div>
     <div class="container" id="about">
       <h2 id="about"></h2>
       <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
-      
     </div>
-    
   </section>  
 
   <section>
@@ -50,15 +50,10 @@
       <h2> Street Art</h2>
       <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
     
-
       <h3 id="map"> Street Art Map</h3>
       <div id="googleMap" style="width:100%;height:400px;"></div>
 
-      
-
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKq89X2haWeOcvm7BwKXz83BbXoOewxs&callback=initMap"></script>
-
-      <!-- slide show ////////////////////////////////////////////////////////////////-->
 
       <h3 id="top10"> Top 10 pieces of street art in Belfast</h3>
       <div id="slider">
@@ -84,13 +79,19 @@
       </ul>
 
       <div id="tab-1" class="tab-content current">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Murals are for the most part located in working class areas of Northern Ireland, primarily in Belfast and Derry. Arguably the most well-known and easily identified mural is that of Bobby Sands, on the side wall of Sinn Féin's Falls Road office. A close second is the collection of Irish republican and international-themed murals which are located at what is known as 'The International Wall', also in Belfast. In Derry, Free Derry Corner, where the slogan "You Are Now Entering Free Derry" was painted in 1969 shortly after the Battle of the Bogside, is prominent.<br>
+        <!-- source https://en.wikipedia.org/wiki/Murals_in_Northern_Ireland -->
+        <img src="images/bsmural.jpg" alt="art1">
       </div>
       <div id="tab-2" class="tab-content">
-         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+         Compared to the symbolic richness of the Republican murals, the Loyalist equivalents are known for exuding a more defiant and militaristic tone, such as the relatively recently produced mural on Shankill Road (2007), depicting the illegal terrorist organisation of the Ulster Volunteer Force (UVF). Central to the frame is the UVF insignia, guarded by paramilitary figures and crowned by the ethereal faces of five dead members: Robert Mcintyre, Robert Wadsworth, Thomas Chapman, James McGregor and William Hanna, who sacrificed their lives to the Loyalist cause.<br>
+         <!-- source https://theculturetrip.com/europe/united-kingdom/northern-ireland/articles/belfast-s-murals-the-politics-and-the-passion/ -->
+         <img src="images/lmural.jpg" alt="art1">
       </div>
       <div id="tab-3" class="tab-content">
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Not all murals in Northern Ireland are directly political or sectarian in nature, with some commemorating events such as the Great Irish Famine (1845–1849), and other moments in Irish history. Many portray events from Irish mythology, and images from Irish myths are often incorporated into political murals. Murals representing peace and tolerance are becoming increasingly popular with school groups who have children either design or actually paint murals in areas around their schools. <br>
+        <!-- source https://en.wikipedia.org/wiki/Murals_in_Northern_Ireland -->
+        <img src="images/omural.jpg" alt="art1">
       </div>
     </div>
   </section>
@@ -98,11 +99,10 @@
   <section>
     <div class="container" id="contact">
       <h2> Contact </h2>
+      <img style="width:70px;" src="images/instagram.png" alt="instagram">
       <p> Sign up to our newsletter?</p>
-    </div>
-    
-    <!-- Trigger/Open The Modal -->
-    <button id="myBtn">Sign Up</button>
+      <button id="myBtn">Sign Up</button>
+    </div>  
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -126,7 +126,7 @@
       </div>
     </div>
   </section>
+
+  <footer> Created by Kilian B00667170</footer>
 </body>
-
-
 </html>	
