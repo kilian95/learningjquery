@@ -33,60 +33,29 @@ $(document).ready(function(){
 
   //animation bounce effect ----------------------------------------------
 
-  $(".home").click(function(){
-     $("#bar").animate({left: '85', width: '50px',});
-     bounceRight();
-  });
+  //values of left
+  //using array means we dont need a click function for each li.
+  //first value is left, second value is width.
+  var animateInfo = [[0,0], [560,60], [440,60], [325,80], [185,60], [85, 50]];
 
-  $(".about").click(function(){
+  $("nav li").click(function(){
+    //get index of clicked li
+    var clickedIndex = $(this).index();
+
+    //get Url after hash
     var section = window.location.hash.substr(1);
-    var clickedindex = $(this).index();
-    var currentindex = $("." + section).index();
 
-    //if the clicked index is higher than the current then bounce right else bounce left.
-    //for example if i am in mural section with index of 2 and i click street art with index of 3.
-    //then the bounce should be to the right
-    $("#bar").animate({left: '185px', width: '60px'});
-    if (clickedindex > currentindex){
+    //get index of current li
+    var currentIndex = $("." + section).index();
+    
+    //animate
+    $("#bar").animate({left: animateInfo[clickedIndex][0], width: animateInfo[clickedIndex][1]});
+    if (clickedIndex > currentIndex){
       bounceRight();
     } else{
       bounceLeft();
     }
   })
-
-  $(".streetart").click(function(){
-    var section = window.location.hash.substr(1);
-    var clickedindex = $(this).index();
-    var currentindex = $("." + section).index();
-
-    //if the clicked index is higher than the current then bounce right else bounce left.
-    $("#bar").animate({left: '325px', width: '80px',});
-    if (clickedindex > currentindex){
-      bounceRight();
-    } else{
-      bounceLeft();
-    }
-  })
-
-  $(".murals").click(function(){
-    var section = window.location.hash.substr(1);
-    var clickedindex = $(this).index();
-    var currentindex = $("." + section).index();
-
-    //if the clicked index is higher than the current then bounce right else bounce left.
-    $("#bar").animate({left: '440px', width: '60px',});
-    if (clickedindex > currentindex){
-      bounceRight();
-    } else{
-      bounceLeft();
-    }
-  })
-
-  $(".contact").click(function(){
-     $("#bar").animate({left: '560px', width: '60px',});
-     bounceLeft();
-  });
-
 
   function bounceLeft(){
     $("#bar").animate({left: '-=20px'});
