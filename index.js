@@ -31,63 +31,76 @@ $(document).ready(function(){
     
   });
 
-  //animation bounce effect
-  $("#aboutNav").click(function(){
-    var lastLeft = parseInt($("#bar").css("left"))
+  //animation bounce effect ----------------------------------------------
+
+  $(".home").click(function(){
+     $("#bar").animate({left: '85', width: '50px',});
+     bounceRight();
+  });
+
+  $(".about").click(function(){
+    var section = window.location.hash.substr(1);
+    var clickedindex = $(this).index();
+    var currentindex = $("." + section).index();
+
+    //if the clicked index is higher than the current then bounce right else bounce left.
+    //for example if i am in mural section with index of 2 and i click street art with index of 3.
+    //then the bounce should be to the right
     $("#bar").animate({left: '185px', width: '60px'});
-    
-    bounceDirection(lastLeft);
-  });
-
-  $("#homeNav").click(function(){
-    var lastLeft = parseInt($("#bar").css("left"))
-    $("#bar").animate({left: '85', width: '50px',});
-    $("#bar").animate({left: '+=20px'});
-    $("#bar").animate({left: '-=20px'});
-    $("#bar").animate({left: '+=10px'});
-    $("#bar").animate({left: '-=10px'});
-  });
-
-  $("#artNav").click(function(){
-    var lastLeft = parseInt($("#bar").css("left"))
-    $("#bar").animate({left: '325px', width: '80px',});
-    bounceDirection(lastLeft);
-  });
-
-  $("#muralNav").click(function(){
-    var lastLeft = parseInt($("#bar").css("left")) //get current value of left
-    $("#bar").animate({left: '440px', width: '60px',});
-    bounceDirection(lastLeft);
-  });
-
-  $("#contactNav").click(function(){
-    var lastLeft = parseInt($("#bar").css("left"))
-    $("#bar").animate({left: '560px', width: '60px',});
-    $("#bar").animate({left: '-=20px'});
-    $("#bar").animate({left: '+=20px'});
-    $("#bar").animate({left: '-=10px'});
-    $("#bar").animate({left: '+=10px'});
-  });
-
-  //direction the bounce should be (left or right)
-  function bounceDirection(lastLeft){
-    //get thecurrent value of left
-    var newLeft = parseInt($("#bar").css("left"))
-    if (lastLeft >= newLeft ){
-      $("#bar").animate({left: '+=20px'});
-      $("#bar").animate({left: '-=20px'});
-      $("#bar").animate({left: '+=10px'});
-      $("#bar").animate({left: '-=10px'});
+    if (clickedindex > currentindex){
+      bounceRight();
     } else{
-      $("#bar").animate({left: '-=20px'});
-      $("#bar").animate({left: '+=20px'});
-      $("#bar").animate({left: '-=10px'});
-      $("#bar").animate({left: '+=10px'});
-    } console.log("last left: " + lastLeft + " New left" + newLeft);
+      bounceLeft();
+    }
+  })
+
+  $(".streetart").click(function(){
+    var section = window.location.hash.substr(1);
+    var clickedindex = $(this).index();
+    var currentindex = $("." + section).index();
+
+    //if the clicked index is higher than the current then bounce right else bounce left.
+    $("#bar").animate({left: '325px', width: '80px',});
+    if (clickedindex > currentindex){
+      bounceRight();
+    } else{
+      bounceLeft();
+    }
+  })
+
+  $(".murals").click(function(){
+    var section = window.location.hash.substr(1);
+    var clickedindex = $(this).index();
+    var currentindex = $("." + section).index();
+
+    //if the clicked index is higher than the current then bounce right else bounce left.
+    $("#bar").animate({left: '440px', width: '60px',});
+    if (clickedindex > currentindex){
+      bounceRight();
+    } else{
+      bounceLeft();
+    }
+  })
+
+  $(".contact").click(function(){
+     $("#bar").animate({left: '560px', width: '60px',});
+     bounceLeft();
+  });
+
+
+  function bounceLeft(){
+    $("#bar").animate({left: '-=20px'});
+    $("#bar").animate({left: '+=20px'});
+    $("#bar").animate({left: '-=10px'});
+    $("#bar").animate({left: '+=10px'});
   }
 
-
-   
+  function bounceRight(){
+    $("#bar").animate({left: '+=20px'});
+    $("#bar").animate({left: '-=20px'});
+    $("#bar").animate({left: '+=10px'});
+    $("#bar").animate({left: '-=10px'});
+  }
 
   //--------------smooth scrolling -------------------------------------------------
   $("a").on('click', function(event) {
