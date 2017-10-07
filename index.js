@@ -33,22 +33,59 @@ $(document).ready(function(){
 
   //animation bounce effect
   $("#aboutNav").click(function(){
-    $("#bar").animate({left: '100px', width: '+=10px',});
+    var lastLeft = parseInt($("#bar").css("left"))
+    $("#bar").animate({left: '185px', width: '60px'});
+    
+    bounceDirection(lastLeft);
+  });
+
+  $("#homeNav").click(function(){
+    var lastLeft = parseInt($("#bar").css("left"))
+    $("#bar").animate({left: '85', width: '50px',});
+    $("#bar").animate({left: '+=20px'});
+    $("#bar").animate({left: '-=20px'});
+    $("#bar").animate({left: '+=10px'});
+    $("#bar").animate({left: '-=10px'});
+  });
+
+  $("#artNav").click(function(){
+    var lastLeft = parseInt($("#bar").css("left"))
+    $("#bar").animate({left: '325px', width: '80px',});
+    bounceDirection(lastLeft);
+  });
+
+  $("#muralNav").click(function(){
+    var lastLeft = parseInt($("#bar").css("left")) //get current value of left
+    $("#bar").animate({left: '440px', width: '60px',});
+    bounceDirection(lastLeft);
+  });
+
+  $("#contactNav").click(function(){
+    var lastLeft = parseInt($("#bar").css("left"))
+    $("#bar").animate({left: '560px', width: '60px',});
     $("#bar").animate({left: '-=20px'});
     $("#bar").animate({left: '+=20px'});
     $("#bar").animate({left: '-=10px'});
     $("#bar").animate({left: '+=10px'});
-
   });
 
-  $("#homeNav").click(function(){
-    $("#bar").animate({
-      left: '100px', 
-      width: '+=10px',
-    });
+  //direction the bounce should be (left or right)
+  function bounceDirection(lastLeft){
+    //get thecurrent value of left
+    var newLeft = parseInt($("#bar").css("left"))
+    if (lastLeft >= newLeft ){
+      $("#bar").animate({left: '+=20px'});
+      $("#bar").animate({left: '-=20px'});
+      $("#bar").animate({left: '+=10px'});
+      $("#bar").animate({left: '-=10px'});
+    } else{
+      $("#bar").animate({left: '-=20px'});
+      $("#bar").animate({left: '+=20px'});
+      $("#bar").animate({left: '-=10px'});
+      $("#bar").animate({left: '+=10px'});
+    } console.log("last left: " + lastLeft + " New left" + newLeft);
+  }
 
-
-  });
 
    
 

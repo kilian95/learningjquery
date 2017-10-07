@@ -72,11 +72,12 @@ nav ul li:hover ul.dropdownItem {
 
 #bar{
     margin-top: 60px;
-    background-color: white;
+    background-color: pink;
     height: 5px;
     width: 50px;
-    position: absolute;
-    margin-left: 850px;
+    float: right;
+    position: relative;
+    left: 80px;
 }
 
 .container {
