@@ -8,10 +8,10 @@ $(document).ready(function(){
     var tab_id = $(this).attr('data-tab');
 
     $('ul.tabs li').removeClass('current');
-    $('.tab-content').removeClass('current');
+    $( '.tab-content' ).fadeOut( "slow"); 
 
     $(this).addClass('current');
-    $("#"+tab_id).addClass('current');
+    $("#"+tab_id).fadeIn("slow");
   })
 
   // --------------Navigation -------------------------------------------------
@@ -21,19 +21,8 @@ $(document).ready(function(){
     $('ul', this).stop().slideToggle(300); 
   });
 
-  //progressBar
-  $("li#brand").click(function() {
-    $("#bar").css("width", "20%");
-  });
-
-  $("li#about").click(function() {
-    $("#bar").css("width", "73%");
-    
-  });
-
   //animation bounce effect ----------------------------------------------
 
-  //values of left
   //using array means we dont need a click function for each li.
   //first value is left, second value is width.
   var animateInfo = [[0,0], [560,60], [440,60], [325,80], [185,60], [85, 50]];
@@ -50,6 +39,7 @@ $(document).ready(function(){
     
     //animate
     $("#bar").animate({left: animateInfo[clickedIndex][0], width: animateInfo[clickedIndex][1]});
+    //if clicked index is bigger than current index then we know it is to the right
     if (clickedIndex > currentIndex){
       bounceRight();
     } else{
@@ -90,9 +80,6 @@ $(document).ready(function(){
 
   //----------------Modal for form--------------------------------------------------------
 
-  // Get the modal
-  var modal = document.getElementById('myModal');
-
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
 
@@ -108,7 +95,7 @@ $(document).ready(function(){
 
   // When the user clicks anywhere outside of the modal, close it
   $(window).click(function(event){
-    if (event.target == modal) {
+    if (event.target == $("#myModal")) {
       $("#myModal").css("display", "none");
     }
   })
@@ -217,6 +204,30 @@ $(document).ready(function(){
   startSlider();
 
 
+  // -------------search for table-----------------------------------------
+
+
+  //show search fields on click
+  $('#search').click(function(){
+    $("#searchFields").show();
+  })
+
+  $(".searchInput").on("keyup", function() {
+    var input = $(this).val().toLowerCase(); //get input in lowercase
+    var i = $(this).attr('id'); //get the id of the td. This is then past as the number of the nth child
+   
+    $("td:nth-child(" + i + ")").each(function() {
+      var s = $(this).text().toLowerCase(); //get value of each td in corresponding row
+      if (s.indexOf(input)!=-1) {
+        //if match is found show correspong table row
+        $(this).closest('tr').show();
+      } else{
+        $(this).closest('tr').hide();
+        $("#searchFields").show();
+      }
+    });   
+  });
+  
   
 
 });//.ready(function()
@@ -254,3 +265,4 @@ function initMap() {
     })(marker, i));
   } 
 }
+
