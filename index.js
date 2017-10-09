@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  window.location.hash = 'home';
+
   //add html using jquery
   $("h2#about").text("About");
 
@@ -116,7 +118,7 @@ $(document).ready(function(){
     var errorEmail = "Email must contain '@'";
     
     //check each input is not blank
-    $("input").each(function() {
+    $(".modal-content input").each(function() {
       var element = $(this);
       if (element.val() == "") {
         $( ".modal-content" ).prepend( "<p class='error' id='errorBlank'>All fields must be filled in</p>" );
@@ -162,47 +164,42 @@ $(document).ready(function(){
 
 
     if (emailValid == true && emailsMatch == true && isFilled == true && yearValid ==true){
-      $(".form").css("display", "none");
+      $(".form").toggle(); //hide form
       $( ".modal-content" ).append("<h2> You have succesfully signed up for the newsletter!</h2>");
     }
 
   });
 
   // --------------------slideshow --------------------------------------------------------
-  //settings for slider
-  var width = 720;
-  var animationSpeed = 1000;
-  var pause = 3000;
-  var currentSlide = 1;
+  $('.right').click(function(){
+    var currentImg = $('.active'); 
+    //get the next element
+    var nextImg = currentImg.next();
 
-  //cache DOM elements
-  var $slider = $('#slider');
-  var $slideContainer = $('.slides', $slider);
-  var $slides = $('.slide', $slider);
+    if(nextImg.length){
+      currentImg.removeClass("active").css("z-index", -1);
+      nextImg.addClass("active").css("z-index", 1);
+    }else{
+      //go back to the first image in the slideshow
+      currentImg.removeClass("active").css("z-index", -1);
+      $("#sliderInner img:nth-child(1)").addClass("active").css("z-index", 1);
+    }
+  })
 
-  var interval;
+  $('.left').click(function(){
+    var currentImg = $('.active');
+    //get the prevoius element
+    var prevImg = currentImg.prev();
 
-  function startSlider() {
-    interval = setInterval(function() {
-      $slideContainer.animate({'margin-left': '-='+width}, animationSpeed, function() {
-        if (++currentSlide === $slides.length) {
-          currentSlide = 1;
-          $slideContainer.css('margin-left', 0);
-        }
-      });
-    }, pause);
-  }
-
-  function pauseSlider() {
-      clearInterval(interval);
-  }
-
-  $slideContainer
-      .on('mouseenter', pauseSlider)
-      .on('mouseleave', startSlider);
-
-  startSlider();
-
+    if(prevImg.length){
+      currentImg.removeClass("active").css("z-index", -1);
+      prevImg.addClass("active").css("z-index", 1);
+    }else{
+      //go to the last image in the slide show
+      currentImg.removeClass("active").css("z-index", -1);
+      $("#sliderInner img:nth-child(5)").addClass("active").css("z-index", 1);
+    }
+  })
 
   // -------------search for table-----------------------------------------
 

@@ -54,22 +54,27 @@
       <div id="googleMap" style="width:100%;height:400px;"></div>
 
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKq89X2haWeOcvm7BwKXz83BbXoOewxs&callback=initMap"></script>
+    </div>
+    
+    <div class="container">  
 
       <h3 id="top10"> Top 10 pieces of street art in Belfast</h3>
-      <!-- <div id="slider">
-        <ul class="slides">
-          <li class="slide slide1"><img src="images/art1.jpg" alt="art1"></li>
-          <li class="slide slide2"><img src="images/art2.jpg" alt="art1"></li>
-          <li class="slide slide3"><img src="images/art3.jpg" alt="art1"></li>
-          <li class="slide slide4"><img src="images/art4.jpg" alt="art1"></li>
-          <li class="slide slide5"><img src="images/art5.jpg" alt="art1"></li>
-          <li class="slide slide1"><img src="images/art1.jpg" alt="art1"></li>
-        </ul>
-      </div>
-    </div> -->
 
-    <div class="container">
-      <h3> Belfast Artists </h3>
+      <div id="sliderOuter">
+        <img src="images/left.jpg" class="left">
+        <div id="sliderInner">
+         <img src="images/art1.jpg" class="active">
+         <img src="images/art2.jpg">
+         <img src="images/art3.jpg">
+         <img src="images/art4.jpg">
+         <img src="images/art5.jpg">
+        </div>
+        <img src="images/right.jpg" class="right">
+      </div>
+    </div> 
+
+    <div class="container">  
+      <h3 id="artists"> Belfast Artists </h3>
       <table>
         <tr>
           <th> Artist</th>
