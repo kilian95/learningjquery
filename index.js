@@ -273,29 +273,24 @@ $(document).ready(function(){
 
 
   $('#drawingCanvas').mousedown(function(e){
-    //offsetLeft property returns the left 
-    //position (in pixels) relative to the left side the offsetParent element.
-
-    //get the x and y cordinates of mouse click
-    var mouseX = e.pageX - this.offsetLeft; 
-    var mouseY = e.pageY - this.offsetTop;
     
     paint = true;
-    addClick(mouseX, mouseY);
+    //add x and y cordinates to array
+    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop); 
     redraw();
     mySound.play();
 
   });
 
-
   $('#drawingCanvas').mousemove(function(e){
     if(paint){
+      //add x, y cordinates AND also dragging = true
       addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
       redraw();
     }
   });
 
-   //stop painting when mouse if not clicked down
+   //stop painting when mouse is not clicked down
   $('#drawingCanvas').mouseup(function(e){
     paint = false;
     mySound.stop();
@@ -306,46 +301,42 @@ $(document).ready(function(){
     paint = false;
   });
 
-  //save click position
-  var clickX = new Array();
-  var clickY = new Array();
-  var clickDrag = new Array();
-  var paint;
-
-  //extra colours
-  var colorPurple = "#cb3594";
-  var colorGreen = "#659b41";
-  var colorYellow = "#ffcf33";
-  var colorBrown = "#986928";
-
-var curColor = colorPurple;
-var clickColor = new Array();
+  var paint; //boolean
+  var game = [[],[],[]]; // x , y cordinates and boolean value for dragging
+  //make referencing array easier to read
+  var xCord = game[0]; 
+  var yCord = game[1];
+  var dragging = game[2];
 
   function addClick(x, y, dragging)
   {
-    //push new value to arrays
-    clickX.push(x);
-    clickY.push(y);
-    clickDrag.push(dragging);
-    console.log(dragging);
+    //push x and y cordinates and dragging to array
+    game[0].push(x);
+    game[1].push(y);
+    game[2].push(dragging);
   }
 
   function redraw(){
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
-    context.strokeStyle = "black";
+    //context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clear canvas
+    // context.strokeStyle = "black";
     context.lineJoin = "round";
     context.lineWidth = 5;
         
-    for(var i=0; i < clickX.length; i++) {    
+    for(var i=0; i < xCord.length; i++) {    
       context.beginPath();
-      if(clickDrag[i] && i){
-        context.moveTo(clickX[i-1], clickY[i-1]);
+        if(dragging[i] && i){ //if user is moving mouse
+       //move pen above the paper to cordinates of last point
+        context.moveTo(xCord[i-1], yCord[i-1]); 
        }else{
-         context.moveTo(clickX[i]-1, clickY[i]);
+        //move pen one pixel to the left of clicked pixel  
+        context.moveTo(xCord[i]-1, yCord[i]);
        }
-       context.lineTo(clickX[i], clickY[i]);
-       context.closePath();
-       context.stroke();
+       //move pen on paper to draw line to clicked cordinates x and y
+       context.lineTo(xCord[i], yCord[i]);
+       
+       context.closePath(); //makes line solid with no gaps
+
+       context.stroke(); //make the line visible
     }
   }
 
@@ -359,13 +350,52 @@ var clickColor = new Array();
 
   //clear canvas
   $('#clear').click(function(){
-   context.clearRect(0, 0, context.canvas.width, context.canvas.height); //clear canvas
-   //empty array
-   clickX = [];
-   clickY = [];
-   clickDrag = [];
+    clearCanvas();
   })
 
+  function clearCanvas(){
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height); //clear canvas
+   
+    //empty array
+    game = [[],[],[]];
+
+    //reset values of x,y and dragging
+    xCord = game[0]; 
+    yCord = game[1];
+    dragging = game[2];
+  }
+
+  var caught = true;
+  $("#movelight").click(function(){
+
+      // while(caught){
+
+      
+
+      var random = Math.floor(Math.random() * 300) + 3100;
+      var negative = -Math.abs(random);
+
+      $("#spotlight").animate({left: '250px', bottom: negative});
+      $("#spotlight").animate({left: '1050px', bottom: negative});
+
+    // }
+    
+    //spotlight will stay in canvas between -3100 and -3400 bottom
+    //get random value between these values
+    
+  });
+
+
+
+  
+
+  $("#spotlight").mouseover(function(){
+    caught = false;
+    mySound.stop();
+    alert("youve been caught!");
+    clearCanvas();
+  }); 
+  
   function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
@@ -380,7 +410,6 @@ var clickColor = new Array();
       this.sound.pause();
     }
   }  
-
 });
 
 

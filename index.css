@@ -250,5 +250,14 @@ tr:nth-child(even) {
 #drawingCanvas{
     border: 1px solid #000000;
     background-image: url("images/wall1.jpg")
+}
 
+#spotlight{
+    background:yellow; 
+    left:50%;
+    opacity:0.4;
+    border-radius: 50%; 
+    height:100px;
+    width:100px;
+    position:absolute;
 }
