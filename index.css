@@ -92,6 +92,10 @@ nav ul li:hover ul.dropdownItem {
     margin: inherit;
 }
 
+section{
+    text-align: center;
+}
+
 /* tabs -----------------------*/
 
 ul.tabs{
@@ -175,7 +179,6 @@ ul.tabs li.current{
 #sliderInner img{
     height: 500px;
     display: none;
-
 }
 
 #sliderInner {
@@ -241,4 +244,11 @@ tr:nth-child(even) {
 
 #searchFields{
     display: none;
+}
+
+/*Game ---------------------------------*/
+#drawingCanvas{
+    border: 1px solid #000000;
+    background-image: url("images/wall1.jpg")
+
 }

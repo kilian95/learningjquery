@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  window.location.hash = 'home';
+  //window.location.hash = 'home';
 
   //add html using jquery
   $("h2#about").text("About");
@@ -262,4 +262,126 @@ function initMap() {
     })(marker, i));
   } 
 }
+
+//--------------Drawing Game ----------------------------------------------------
+$(document).ready(function(){
+  var context = document.getElementById('drawingCanvas').getContext("2d");
+  var paint; //boolean
+  var canvas = $('#canvas');
+  var mySound;
+  mySound = new sound("spray.mp3"); 
+
+
+  $('#drawingCanvas').mousedown(function(e){
+    //offsetLeft property returns the left 
+    //position (in pixels) relative to the left side the offsetParent element.
+
+    //get the x and y cordinates of mouse click
+    var mouseX = e.pageX - this.offsetLeft; 
+    var mouseY = e.pageY - this.offsetTop;
+    
+    paint = true;
+    addClick(mouseX, mouseY);
+    redraw();
+    mySound.play();
+
+  });
+
+
+  $('#drawingCanvas').mousemove(function(e){
+    if(paint){
+      addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+      redraw();
+    }
+  });
+
+   //stop painting when mouse if not clicked down
+  $('#drawingCanvas').mouseup(function(e){
+    paint = false;
+    mySound.stop();
+  });
+
+   //stop painting when mouse is outside canavs
+   $('#drawingCanvas').mouseleave(function(e){
+    paint = false;
+  });
+
+  //save click position
+  var clickX = new Array();
+  var clickY = new Array();
+  var clickDrag = new Array();
+  var paint;
+
+  //extra colours
+  var colorPurple = "#cb3594";
+  var colorGreen = "#659b41";
+  var colorYellow = "#ffcf33";
+  var colorBrown = "#986928";
+
+var curColor = colorPurple;
+var clickColor = new Array();
+
+  function addClick(x, y, dragging)
+  {
+    //push new value to arrays
+    clickX.push(x);
+    clickY.push(y);
+    clickDrag.push(dragging);
+    console.log(dragging);
+  }
+
+  function redraw(){
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+    context.strokeStyle = "black";
+    context.lineJoin = "round";
+    context.lineWidth = 5;
+        
+    for(var i=0; i < clickX.length; i++) {    
+      context.beginPath();
+      if(clickDrag[i] && i){
+        context.moveTo(clickX[i-1], clickY[i-1]);
+       }else{
+         context.moveTo(clickX[i]-1, clickY[i]);
+       }
+       context.lineTo(clickX[i], clickY[i]);
+       context.closePath();
+       context.stroke();
+    }
+  }
+
+  $('#wall').click(function(){
+    $('#drawingCanvas').css("background-image", "url(images/wall1.jpg)");
+  })
+
+  $('#billboard').click(function(){
+    $('#drawingCanvas').css("background-image", "url(images/wall2.jpg)");  
+  })
+
+  //clear canvas
+  $('#clear').click(function(){
+   context.clearRect(0, 0, context.canvas.width, context.canvas.height); //clear canvas
+   //empty array
+   clickX = [];
+   clickY = [];
+   clickDrag = [];
+  })
+
+  function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+      this.sound.play();
+    }
+    this.stop = function(){
+      this.sound.pause();
+    }
+  }  
+
+});
+
+
 
