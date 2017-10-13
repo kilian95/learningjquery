@@ -30,6 +30,63 @@ $(document).ready(function(){
     }
   });
 
+  //---------dynamic population of select element----------------------------------------
+  
+    $('#selectElement').append('<select />');
+    $('#textHolder1>span').each(function(){
+      $('select').append('<option>' + $(this).text()  + '</option>' );
+   });
+
+   //---------dynamic population of table----------------------------------------
+  
+    $('#theTable').append('<table />');
+    $('#tableContainer table').append('<tr />');
+    $('#tableHeader>span').each(function(){
+      $('#tableContainer tr').append('<th>' + $(this).text()  + '</th>' ); //add headers
+    });
+
+    //add search button and search fields
+    $('#tableContainer tr').append('<th><input type="button" value="search" id="search"></th>' );
+    $('#tableContainer table').append('<tr id="searchFields">'+
+    '<td><input type="text" id="1" class="searchInput" placeholder="Artist..." /></td>'+
+    '<td><input type="text" id="2" class="searchInput" placeholder="Website..." /></td>'+
+    '<td><input type="text" id="3" class="searchInput" placeholder="xxxxxxxxxxx" /></td>'+
+    '<td><input type="text" id="4" class="searchInput" placeholder="Meduim..." /></td>'+
+    '</tr> ');
+    
+    //add new table row and populate with data for each artist
+    for (i = 0; i < 7; i++) { 
+      $('#tableContainer table').append('<tr id="row' + [i] + '" />');
+      $('#tableData' + [i] + '>span').each(function(){
+        $('#tableContainer tr[id="row' + [i] + '"]').append('<td>' + $(this).text()  + '</td>' );
+       });
+      
+    }
+
+  // -------------search for table-----------------------------------------
+
+
+  //show search fields on click
+  $('#search').click(function(){
+    $("#searchFields").show();
+  })
+
+  $(".searchInput").on("keyup", function() {
+    var input = $(this).val().toLowerCase(); //get input in lowercase
+    var i = $(this).attr('id'); //get the id of the td. This is then past as the number of the nth child
+   
+    $("td:nth-child(" + i + ")").each(function() {
+      var s = $(this).text().toLowerCase(); //get value of each td in corresponding row
+      if (s.indexOf(input)!=-1) {
+        //if match is found show correspong table row
+        $(this).closest('tr').show();
+      } else{
+        $(this).closest('tr').hide();
+        $("#searchFields").show();
+      }
+    });   
+  });
+
   // --------------Navigation -------------------------------------------------
   //drop down menu
   $('nav li ul').hide().removeClass('dropdownItem'); //hide drop down menu
@@ -214,33 +271,6 @@ $(document).ready(function(){
       $("#sliderInner img:nth-child(5)").addClass("active").css("z-index", 1);
     }
   })
-
-  // -------------search for table-----------------------------------------
-
-
-  //show search fields on click
-  $('#search').click(function(){
-    $("#searchFields").show();
-  })
-
-  $(".searchInput").on("keyup", function() {
-    var input = $(this).val().toLowerCase(); //get input in lowercase
-    var i = $(this).attr('id'); //get the id of the td. This is then past as the number of the nth child
-   
-    $("td:nth-child(" + i + ")").each(function() {
-      var s = $(this).text().toLowerCase(); //get value of each td in corresponding row
-      if (s.indexOf(input)!=-1) {
-        //if match is found show correspong table row
-        $(this).closest('tr').show();
-      } else{
-        $(this).closest('tr').hide();
-        $("#searchFields").show();
-      }
-    });   
-  });
-  
-  
-
 });//.ready(function()
 
 //--------------Google Maps ----------------------------------------------------

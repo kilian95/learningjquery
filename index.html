@@ -86,66 +86,67 @@
 
     <div class="container">  
       <h3 id="artists"> Belfast Artists </h3>
-      <table>
-        <tr>
-          <th> Artist</th>
-          <th> Website</th>
-          <th>Phone Number</th>
-          <th>Meduim</th>
-          <th><input type="button" value="search" id="search"></th>
-        </tr>
-        <tr id="searchFields">
-          <td><input type="text" id="1" class="searchInput" placeholder="Artist..." /></td>
-          <td><input type="text" id="2" class="searchInput" placeholder="Website..." /></td>
-          <td><input type="text" id="3" class="searchInput" placeholder="xxxxxxxxxxx" /></td>
-          <td><input type="text" id="4" class="searchInput" placeholder="Meduim..." /></td>
-        </tr>  
-        <tr>
-          <td>Peter Barber</td>
-          <td><a href="http://www.peterbarber.co.uk/">www.peterbarber.co.uk</a></td>
-          <td>07812345678</td>
-          <td>Pastel</td>
-        </tr>
-        <tr>
-          <td>friz</td>
-          <td><a href="http://thisisfriz.com/">www.thisisfriz.com</a></td>
-          <td>07809876543</td>
-          <td>Water Colour</td>
-        </tr>
-        <tr>
-          <td>Salvador Dali</td>
-          <td><a href="www.salvador.com">www.salvador.com</a></td>
-          <td>07812345645</td>
-          <td>Oil Paint</td>
-        </tr>
-        <tr>
-          <td>Bansky</td>
-          <td><a href="www.banksy.com">www.banksy.com</a></td>
-          <td>08575375578</td>
-          <td>Spray paint</td>
-        </tr>
-        <tr>
-          <td>Visual Waste</td>
-          <td><a href="www.visualwaste.com">www.visualwaste.com</a></td>
-          <td>08575377775</td>
-          <td>Acrylic Paint</td>
-        </tr>
-        <tr>
-          <td>Andy Warhol</td>
-          <td><a href="www.andywarhol.com">www.andywarhol.com</a></td>
-          <td>08575377757</td>
-          <td>Oil Paint</td>
-        </tr>
-        <tr>
-          <td>Pablo picasso</td>
-          <td><a href="www.pablobicasso.com">www.pablobicasso.com</a></td>
-          <td>08577757657</td>
-          <td>Water Colour</td>
-        </tr>
+      <div id=tableContainer>
 
+        <div id="tableHeader">
+          <span>Artist</span>
+          <span>Website</span>
+          <span>Phone number</span>
+          <span>Meduim</span>
+        </div>
 
-      </table> 
-    </div>  
+        <div class="tableData" id="tableData0">
+          <span>Peter Barber</span>
+          <span>www.peterbarber.co.uk</span>
+          <span>07850423321</span>
+          <span>Pastel</span>
+        </div>
+
+        <div class="tableData" id="tableData1">
+          <span>Friz</span>
+          <span>www.thisisfriz.com</span>
+          <span>07850487675</span>
+          <span>Water Colour</span>
+        </div>
+
+        <div class="tableData" id="tableData2">
+          <span>Salvador Dali</span>
+          <span>www.salvador.com</span>
+          <span>07812345645</span>
+          <span>Oil Paint</span>
+        </div>
+        
+        <div class="tableData" id="tableData3">
+          <span>Bansky</span>
+          <span>www.banksy.com</span>
+          <span>08575375578</span>
+          <span>Spray paint</span>
+        </div> 
+
+        <div class="tableData" id="tableData4">
+          <span>Visual Waste</span>
+          <span>www.visualwaste.com</span>
+          <span>08575377775</span>
+          <span>Acrylic Paint</span>
+        </div>
+
+        <div class="tableData" id="tableData5">
+          <span>Andy Warhol</span>
+          <span>www.andywarhol.com</span>
+          <span>08575377757</span>
+          <span>Oil Paint</span>
+        </div>
+
+        <div class="tableData" id="tableData6">
+          <span>Pablo picasso</span>
+          <span>www.pablobicasso.com</span>
+          <span>08577757657</span>
+          <span>Water Colour</span>
+        </div>  
+
+        <div id="theTable"></div>
+      </div>
+      
   </section>  
 
   <section>
@@ -190,6 +191,12 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <div class="form">
+          <div id="textHolder1">
+            <span>Mr</span>
+            <span>Miss</span>
+            <span>Mrs</span>
+          </div>
+          <div id="selectElement"></div>
           <p class="error"></p>
           First name: <input type="text" name="FirstName" id="FirstName"><br>
           <p class="error"></p>

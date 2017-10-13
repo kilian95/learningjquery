@@ -263,9 +263,15 @@ tr:nth-child(even) {
     display: none;
 }
 
-#textHolder{
+#textHolder, #textHolder1, #tableHeader{
     display: none;
 }
+
+.tableData{
+    display: none;
+}
+
+
 
 #artGalleries li{
     list-style-position: inside;
