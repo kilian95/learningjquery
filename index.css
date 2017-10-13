@@ -262,3 +262,11 @@ tr:nth-child(even) {
     position:absolute;
     display: none;
 }
+
+#textHolder{
+    display: none;
+}
+
+#artGalleries li{
+    list-style-position: inside;
+}

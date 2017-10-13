@@ -16,6 +16,20 @@ $(document).ready(function(){
     $("#"+tab_id).fadeIn("slow");
   })
 
+  //---------dynamic population of list-----------------------------------------------
+  var alreadyshown = false;
+  $('#showGalleries').click(function(){ 
+    if (alreadyshown){
+      //do nothing
+    }else{
+      alreadyshown = true;
+      $('#artGalleries').append('<ul />');
+      $('#textHolder>span').each(function(){
+        $('#about ul').append('<li>' + $(this).text()  + '</li>' );
+      }); 
+    }
+  });
+
   // --------------Navigation -------------------------------------------------
   //drop down menu
   $('nav li ul').hide().removeClass('dropdownItem'); //hide drop down menu
