@@ -268,18 +268,20 @@ $(document).ready(function(){
   var context = document.getElementById('drawingCanvas').getContext("2d");
   var paint; //boolean
   var canvas = $('#canvas');
+  var green = '#71b573';
+  var blue = '#49a0d8';
+  var red = '#dc4b25';
+  var black = '#000000';
+  var activeColour = black;
   var mySound;
   mySound = new sound("spray.mp3"); 
 
-
   $('#drawingCanvas').mousedown(function(e){
-    
     paint = true;
     //add x and y cordinates to array
     addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop); 
     redraw();
     mySound.play();
-
   });
 
   $('#drawingCanvas').mousemove(function(e){
@@ -294,6 +296,7 @@ $(document).ready(function(){
   $('#drawingCanvas').mouseup(function(e){
     paint = false;
     mySound.stop();
+    console.log(game);
   });
 
    //stop painting when mouse is outside canavs
@@ -302,11 +305,12 @@ $(document).ready(function(){
   });
 
   var paint; //boolean
-  var game = [[],[],[]]; // x , y cordinates and boolean value for dragging
+  var game = [[],[],[],[]]; // x , y cordinates, boolean value for dragging and colour
   //make referencing array easier to read
   var xCord = game[0]; 
   var yCord = game[1];
   var dragging = game[2];
+  var colour = game[3];
 
   function addClick(x, y, dragging)
   {
@@ -314,13 +318,14 @@ $(document).ready(function(){
     game[0].push(x);
     game[1].push(y);
     game[2].push(dragging);
+    game[3].push(activeColour);
   }
 
   function redraw(){
     //context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clear canvas
     // context.strokeStyle = "black";
     context.lineJoin = "round";
-    context.lineWidth = 5;
+    context.lineWidth = 10;
         
     for(var i=0; i < xCord.length; i++) {    
       context.beginPath();
@@ -335,7 +340,7 @@ $(document).ready(function(){
        context.lineTo(xCord[i], yCord[i]);
        
        context.closePath(); //makes line solid with no gaps
-
+       context.strokeStyle = colour[i];
        context.stroke(); //make the line visible
     }
   }
@@ -348,49 +353,73 @@ $(document).ready(function(){
     $('#drawingCanvas').css("background-image", "url(images/wall2.jpg)");  
   })
 
+  $('#gallery').click(function(){
+    $('#drawingCanvas').css("background-image", "url(images/wall3.jpg)");  
+  })
+
+  //event handlers for game buttons
+
   //clear canvas
   $('#clear').click(function(){
     clearCanvas();
   })
 
+  $('#black').click(function(){
+    activeColour = black;
+  })
+
+  $('#red').click(function(){
+    activeColour = red;
+  })
+
+  $('#green').click(function(){
+    activeColour = green;
+  })
+
+  $('#blue').click(function(){
+    activeColour = blue;
+  })
+
+  $('#useColour').click(function(){
+    activeColour = $('#custColour').val();
+  })
+
+
+
+  $("#movelight").click(function(){
+    function loop() {
+
+      $("#spotlight").show(); 
+
+      //Get random height value
+      var random = Math.floor(Math.random() * 300) + 2900;
+      //make number negative
+      var negative = -Math.abs(random);
+    
+      $("#spotlight").animate({left: '250px', bottom: negative}, 2000);
+      $("#spotlight").animate({left: '1050px', bottom: negative}, 2000,
+      function() {
+        loop(); //loop animation 
+      });
+    }
+    loop();
+  });
+
+
   function clearCanvas(){
     context.clearRect(0, 0, context.canvas.width, context.canvas.height); //clear canvas
    
     //empty array
-    game = [[],[],[]];
+    game = [[],[],[],[]];
 
     //reset values of x,y and dragging
     xCord = game[0]; 
     yCord = game[1];
     dragging = game[2];
+    colour = game[3];
   }
 
-  var caught = true;
-  $("#movelight").click(function(){
-
-      // while(caught){
-
-      
-
-      var random = Math.floor(Math.random() * 300) + 3100;
-      var negative = -Math.abs(random);
-
-      $("#spotlight").animate({left: '250px', bottom: negative});
-      $("#spotlight").animate({left: '1050px', bottom: negative});
-
-    // }
-    
-    //spotlight will stay in canvas between -3100 and -3400 bottom
-    //get random value between these values
-    
-  });
-
-
-
-  
-
   $("#spotlight").mouseover(function(){
-    caught = false;
     mySound.stop();
     alert("youve been caught!");
     clearCanvas();
@@ -409,8 +438,5 @@ $(document).ready(function(){
     this.stop = function(){
       this.sound.pause();
     }
-  }  
+  }
 });
-
-
-
