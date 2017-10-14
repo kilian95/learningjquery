@@ -272,7 +272,31 @@ tr:nth-child(even) {
 }
 
 
-
 #artGalleries li{
     list-style-position: inside;
+}
+
+/*Accordion----------------------------*/
+button.accordion {
+    background-color: #2a2f33;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    transition: 0.5s;
+}
+
+button.accordion.active, button.accordion:hover {
+    background-color: #7c8a87;
+}
+
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease-out;
 }

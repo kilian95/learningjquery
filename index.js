@@ -240,6 +240,18 @@ $(document).ready(function(){
     }
 
   });
+  // --------------------Accordion --------------------------------------------------------
+  $('.accordion').each(function(){
+    $(this).click(function(){
+      $('.accordion').removeClass("active");
+      $(this).addClass("active");
+      if ($(this).next().css("max-height") == "0px"){
+        $(this).next().css("maxHeight", "100px");
+      } else{
+        $(this).next().css("maxHeight", "0px");
+      }
+    });
+  }); 
 
   // --------------------slideshow --------------------------------------------------------
   $('.right').click(function(){
