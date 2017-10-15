@@ -322,8 +322,10 @@ $(document).ready(function(){
 
   $('#drawingCanvas').mousedown(function(e){
     paint = true;
-    //add x and y cordinates to array
-    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop); 
+    //get the mouse position and subtract it from the gameContainer offset postion
+    var x = e.pageX - $('#gameContainer').offset().left;
+    var y = e.pageY - $('#gameContainer').offset().top;
+    addClick(x, y); 
     redraw();
     mySound.play();
   });
@@ -331,7 +333,9 @@ $(document).ready(function(){
   $('#drawingCanvas').mousemove(function(e){
     if(paint){
       //add x, y cordinates AND also dragging = true
-      addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+      var x = e.pageX - $('#gameContainer').offset().left;
+      var y = e.pageY - $('#gameContainer').offset().top;
+      addClick(x, y, true);
       redraw();
     }
   });
@@ -410,17 +414,17 @@ $(document).ready(function(){
   })
 
   $("#movelight").click(function(){
+
     function loop() {
 
       $("#spotlight").show(); 
 
       //Get random height value
-      var random = Math.floor(Math.random() * 300) + 2900;
-      //make number negative
-      var negative = -Math.abs(random);
+      var random = Math.floor(Math.random() * 280) + 20;
+      
     
-      $("#spotlight").animate({left: '250px', bottom: negative}, 2000);
-      $("#spotlight").animate({left: '1050px', bottom: negative}, 2000,
+      $("#spotlight").animate({left: '25px', bottom: random}, 2000);
+      $("#spotlight").animate({left: '800px', bottom: random}, 2000,
       function() {
         loop(); //loop animation 
       });

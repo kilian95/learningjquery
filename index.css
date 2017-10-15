@@ -247,18 +247,25 @@ tr:nth-child(even) {
 
 #drawingCanvas{
     border: 1px solid #000000;
-    background-image: url("images/wall1.jpg")
+    background-image: url("images/wall1.jpg");
+}
+
+#gameContainer{
+    position: relative;
+    margin: auto;
+    width: 900px;
+    height: 400px;
 }
 
 #spotlight{
     background:yellow; 
     left:50%;
     opacity:0.4;
-    border-radius: 50%; 
+    border-radius: 50%;
     height:100px;
     width:100px;
     position:absolute;
-    /*display: none;*/
+   /* display: none;*/
 }
 
 #textHolder, #textHolder1, #tableHeader{
