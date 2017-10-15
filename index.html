@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html>
-
 <head>
 	<link rel="stylesheet" type="text/css" href="index.css">
   <title>Street Art Belfast</title>
@@ -15,9 +13,9 @@
       <li class="murals">
         <a href="#murals">Murals</a>
         <ul class="dropdownItem">
-          <li><a href="#">Nationalist</a></li>
-          <li><a href="#">Unionist</a></li>
-          <li><a href="#">Other</a></li>
+          <li><a href="#murals">Nationalist</a></li>
+          <li><a href="#murals">Unionist</a></li>
+          <li><a href="#murals">Other</a></li>
         </ul>
       </li>
       <li class="streetart">
@@ -43,7 +41,6 @@
       <p>This site's aim is to document street art accross Belfast. In recent years street art has become part of the city with many well known artists painting here. Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl.</p>
       <p> There are many types of art tours available: </p>
       
-
       <button class="accordion">Street Art Tours</button>
       <div class="panel">
         <p>Seedhead Arts run a weekly street art walking tour which covers Belfast City centre. Tickets can be baught via the Black box website or over the counter at the Belfast vistors centre. Tours can also be commisoned outside the regular hours. </p>
@@ -68,28 +65,25 @@
         <span>Bradbury Gallery</span>
         <span>The MAC</span>
       </div>
-      <div id="artGalleries">
-    </div>
-    </div>
+      <div id="artGalleries"></div>
+    </div> <!-- end of container -->
   </section>  
 
   <section>
     <div class="container" id="streetart">
       <h2> Street Art</h2>
       <p>Pickled intelligentsia enamel pin tattooed try-hard 90's la croix prism. Retro pork belly distillery helvetica godard wayfarers pug vaporware copper mug. Hashtag biodiesel vegan selvage adaptogen vape pickled iceland raclette. Enamel pin YOLO 3 wolf moon brunch. Quinoa jianbing tousled air plant, pitchfork shabby chic cardigan. Tacos letterpress DIY blue bottle, taiyaki waistcoat gentrify literally intelligentsia. Mumblecore quinoa enamel pin vinyl. Authentic mumblecore snackwave retro la croix dreamcatcher man braid 3 wolf moon pabst vinyl locavore single-origin coffee activated charcoal. Food truck hammock plaid, freegan pug umami coloring book four dollar toast twee pork belly pinterest kickstarter biodiesel semiotics tilde.</p>
-    
-      <h3 id="map"> Street Art Map</h3>
+    </div>
+    <div class="container" id="map">
+      <h3> Street Art Map</h3>
       <div id="googleMap" style="width:100%;height:400px;"></div>
-
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkKq89X2haWeOcvm7BwKXz83BbXoOewxs&callback=initMap"></script>
     </div>
     
-    <div class="container">  
-
-      <h3 id="top10"> Top 10 pieces of street art in Belfast</h3>
-
+    <div class="container" id="top10">  
+      <h3> Top 10 pieces of street art in Belfast</h3>
       <div id="sliderOuter">
-        <img src="images/left.jpg" class="left">
+        
         <div id="sliderInner">
          <img src="images/art1.jpg" class="active">
          <img src="images/art2.jpg">
@@ -97,14 +91,14 @@
          <img src="images/art4.jpg">
          <img src="images/art5.jpg">
         </div>
+        <img src="images/left.jpg" class="left">
         <img src="images/right.jpg" class="right">
       </div>
     </div> 
 
-    <div class="container">  
-      <h3 id="artists"> Belfast Artists </h3>
+    <div class="container" id="artists">  
+      <h3> Belfast Artists </h3>
       <div id=tableContainer>
-
         <div id="tableHeader">
           <span>Artist</span>
           <span>Website</span>
@@ -160,10 +154,9 @@
           <span>08577757657</span>
           <span>Water Colour</span>
         </div>  
-
         <div id="theTable"></div>
-      </div>
-      
+      </div> <!-- end of table container -->
+    </div> <!-- end of container --> 
   </section>  
 
   <section>
@@ -196,14 +189,16 @@
   <section>
     <div class="container" id="contact">
       <h2> Contact </h2>
-      <img style="width:70px;" src="images/instagram.png" alt="instagram">
+      <img id="social" style="width:70px;" src="images/instagram.png" alt="instagram">
+      <div id="tooltip">
+        <span class="tooltiptext">@belfaststreetart</span>
+      </div>
       <p> Sign up to our newsletter?</p>
       <button id="myBtn">Sign Up</button>
     </div>  
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
-
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">&times;</span>
@@ -239,22 +234,19 @@
       <button id="movelight">Activate Spotlight</button>
       <button id="clear">Clear Canvas</button>
       Choose your service:  
-      <button id="wall">Wall</button>
-      <button id="billboard">Billboard</button>
-      <button id="gallery">Art Gallery</button>
+      <button class="service" id="wall1">Wall</button>
+      <button class="service" id="wall2">Billboard</button>
+      <button class="service" id="wall3">Art Gallery</button>
       Choose your colour:  
-      <button id="black">Black</button>
-      <button id="blue">Blue</button>
-      <button id="red">Red</button>
-      <button id="green">Green</button>
+      <button class="colour" id="black">Black</button>
+      <button  class="colour" id="blue">Blue</button>
+      <button  class="colour" id="red">Red</button>
+      <button  class="colour" id="green">Green</button>
       <p> Enter custom colour: </p>
       <input type="text" id="custColour">
-      <button id="useColour">Use Colour</button> 
-        
+      <button id="useColour">Use Colour</button>   
     </div>
   </section>
-  
-
   <footer> Created by Kilian B00667170</footer>
 </body>
 </html>	

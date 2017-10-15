@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  //window.location.hash = 'home';
+  window.location.hash = 'home';
 
   //add html using jquery
   $("h2#about").text("About");
@@ -10,7 +10,7 @@ $(document).ready(function(){
     var tab_id = $(this).attr('data-tab');
 
     $('ul.tabs li').removeClass('current');
-    $( '.tab-content' ).fadeOut( "slow"); 
+    $('.tab-content').hide();
 
     $(this).addClass('current');
     $("#"+tab_id).fadeIn("slow");
@@ -30,15 +30,13 @@ $(document).ready(function(){
     }
   });
 
-  //---------dynamic population of select element----------------------------------------
-  
+  //---------dynamic population of select element-------------------------------------
     $('#selectElement').append('<select />');
     $('#textHolder1>span').each(function(){
       $('select').append('<option>' + $(this).text()  + '</option>' );
    });
 
-   //---------dynamic population of table----------------------------------------
-  
+   //---------dynamic population of table----------------------------------------------
     $('#theTable').append('<table />');
     $('#tableContainer table').append('<tr />');
     $('#tableHeader>span').each(function(){
@@ -59,13 +57,10 @@ $(document).ready(function(){
       $('#tableContainer table').append('<tr id="row' + [i] + '" />');
       $('#tableData' + [i] + '>span').each(function(){
         $('#tableContainer tr[id="row' + [i] + '"]').append('<td>' + $(this).text()  + '</td>' );
-       });
-      
+      });
     }
 
-  // -------------search for table-----------------------------------------
-
-
+  // -------------search for table-----------------------------------------------------
   //show search fields on click
   $('#search').click(function(){
     $("#searchFields").show();
@@ -73,12 +68,12 @@ $(document).ready(function(){
 
   $(".searchInput").on("keyup", function() {
     var input = $(this).val().toLowerCase(); //get input in lowercase
-    var i = $(this).attr('id'); //get the id of the td. This is then past as the number of the nth child
+    var i = $(this).attr('id'); //get the id of the td. This is then passed as the number of the nth child
    
     $("td:nth-child(" + i + ")").each(function() {
       var s = $(this).text().toLowerCase(); //get value of each td in corresponding row
       if (s.indexOf(input)!=-1) {
-        //if match is found show correspong table row
+        //if match is found show corresponding table row
         $(this).closest('tr').show();
       } else{
         $(this).closest('tr').hide();
@@ -87,16 +82,8 @@ $(document).ready(function(){
     });   
   });
 
-  // --------------Navigation -------------------------------------------------
-  //drop down menu
-  $('nav li ul').hide().removeClass('dropdownItem'); //hide drop down menu
-  $('nav li').hover(function () {
-    $('ul', this).stop().slideToggle(300); 
-  });
-
-  //animation bounce effect ----------------------------------------------
-
-  //using array means we dont need a click function for each li.
+  //--------------animation bounce effect ---------------------------------------
+  //using array means a click function is not needed for each li.
   //first value is left, second value is width.
   var animateInfo = [[0,0], [560,60], [440,60], [325,80], [185,60], [85, 50]];
 
@@ -152,7 +139,6 @@ $(document).ready(function(){
   });
 
   //----------------Modal for form--------------------------------------------------------
-
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
 
@@ -174,14 +160,9 @@ $(document).ready(function(){
   })
 
   // --------------form validation --------------------------------------------------------
-
   $("#submit").click(function(){
-
-    var isFilled;
-    var emailsMatch;
-    var emailValid;
-    var yearValid;
-
+    var isFilled, emailsMatch, emailValid, yearValid; //boolean
+    
     //error messages
     var erroryear = "Year must be a number";
     var errorBlank = "This can not be left blank";
@@ -194,7 +175,6 @@ $(document).ready(function(){
       if (element.val() == "") {
         $( ".modal-content" ).prepend( "<p class='error' id='errorBlank'>All fields must be filled in</p>" );
         isFilled = false;
-        
         return false; //break out of loop  
       }else {
         $( "input" ).prev().empty(); //removes error message
@@ -233,13 +213,12 @@ $(document).ready(function(){
       yearValid = false;
     } 
 
-
-    if (emailValid == true && emailsMatch == true && isFilled == true && yearValid ==true){
+    if (emailValid && emailsMatch && isFilled && yearValid){
       $(".form").toggle(); //hide form
       $( ".modal-content" ).append("<h2> You have succesfully signed up for the newsletter!</h2>");
     }
-
   });
+
   // --------------------Accordion --------------------------------------------------------
   $('.accordion').each(function(){
     $(this).click(function(){
@@ -252,6 +231,15 @@ $(document).ready(function(){
       }
     });
   }); 
+
+ // --------------------tooltip --------------------------------------------------------
+   $("#social").mouseover(function() {
+    $("#tooltip").show();
+  });
+
+  $("#social").mouseout(function() {
+    $("#tooltip").hide();
+  });
 
   // --------------------slideshow --------------------------------------------------------
   $('.right').click(function(){
@@ -271,7 +259,7 @@ $(document).ready(function(){
 
   $('.left').click(function(){
     var currentImg = $('.active');
-    //get the prevoius element
+    //get the previous element
     var prevImg = currentImg.prev();
 
     if(prevImg.length){
@@ -299,7 +287,7 @@ function initMap() {
                     [54.593826,-5.918291, 'art3.jpg'], 
                     [54.599540,-5.946156, 'art4.jpg'],
                     [54.602960,-5.899297, 'art5.jpg']
-                  ];
+                  ]; //lat, long and address of corresponding imge
   //place markers                
   for (i = 0; i < cordinates.length; i++){
     var latlng = new google.maps.LatLng(cordinates[i][0], cordinates[i][1]);
@@ -348,7 +336,7 @@ $(document).ready(function(){
     }
   });
 
-   //stop painting when mouse is not clicked down
+  //stop painting when mouse is not clicked down
   $('#drawingCanvas').mouseup(function(e){
     paint = false;
     mySound.stop();
@@ -362,6 +350,7 @@ $(document).ready(function(){
 
   var paint; //boolean
   var game = [[],[],[],[]]; // x , y cordinates, boolean value for dragging and colour
+  
   //make referencing array easier to read
   var xCord = game[0]; 
   var yCord = game[1];
@@ -378,8 +367,6 @@ $(document).ready(function(){
   }
 
   function redraw(){
-    //context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clear canvas
-    // context.strokeStyle = "black";
     context.lineJoin = "round";
     context.lineWidth = 10;
         
@@ -401,46 +388,26 @@ $(document).ready(function(){
     }
   }
 
-  $('#wall').click(function(){
-    $('#drawingCanvas').css("background-image", "url(images/wall1.jpg)");
-  })
-
-  $('#billboard').click(function(){
-    $('#drawingCanvas').css("background-image", "url(images/wall2.jpg)");  
-  })
-
-  $('#gallery').click(function(){
-    $('#drawingCanvas').css("background-image", "url(images/wall3.jpg)");  
-  })
-
   //event handlers for game buttons
+
+  //change background
+  $('.service').click(function(){
+    var image = $(this).attr("id");
+    $('#drawingCanvas').css("background-image", "url(images/" + image + ".jpg)");
+  })
 
   //clear canvas
   $('#clear').click(function(){
     clearCanvas();
   })
 
-  $('#black').click(function(){
-    activeColour = black;
-  })
-
-  $('#red').click(function(){
-    activeColour = red;
-  })
-
-  $('#green').click(function(){
-    activeColour = green;
-  })
-
-  $('#blue').click(function(){
-    activeColour = blue;
-  })
+  $(".colour").click(function(){
+    activeColour = $(this).attr('id'); //this way we dont need clickk functon for each colour
+  })  
 
   $('#useColour').click(function(){
     activeColour = $('#custColour').val();
   })
-
-
 
   $("#movelight").click(function(){
     function loop() {
@@ -461,14 +428,13 @@ $(document).ready(function(){
     loop();
   });
 
-
   function clearCanvas(){
     context.clearRect(0, 0, context.canvas.width, context.canvas.height); //clear canvas
    
     //empty array
     game = [[],[],[],[]];
 
-    //reset values of x,y and dragging
+    //reset values of x,y and dragging and colour
     xCord = game[0]; 
     yCord = game[1];
     dragging = game[2];
@@ -484,10 +450,7 @@ $(document).ready(function(){
   function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
+    $(document.body).append(this.sound);
     this.play = function(){
       this.sound.play();
     }
