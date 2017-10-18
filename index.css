@@ -265,7 +265,7 @@ tr:nth-child(even) {
     height:100px;
     width:100px;
     position:absolute;
-   /* display: none;*/
+    display: none;
 }
 
 #textHolder, #textHolder1, #tableHeader{

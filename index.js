@@ -90,7 +90,7 @@ $(document).ready(function(){
   $("nav li").click(function(){
     //get index of clicked li
     var clickedIndex = $(this).index();
-
+    
     //get Url after hash
     var section = window.location.hash.substr(1);
 
@@ -370,6 +370,7 @@ $(document).ready(function(){
     game[3].push(activeColour);
   }
 
+  //below function is code modified from the tutorial: https://github.com/williammalone/Simple-HTML5-Drawing-App 
   function redraw(){
     context.lineJoin = "round";
     context.lineWidth = 10;
@@ -451,6 +452,7 @@ $(document).ready(function(){
     clearCanvas();
   }); 
   
+  //below function is code modified from https://www.w3schools.com/graphics/game_sound.asp 
   function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
